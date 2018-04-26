@@ -10,9 +10,9 @@ const gridProps: IGridProps = {
         "0,1": "black"
     },
     cellSize: 0,
-    onClick: (mouseEvent: MouseEventHandler<ReactNode>) => {},
-    onMouseOver: (mouseEvent: MouseEventHandler<ReactNode>) => {},
-    onMouseOut: (mouseEvent: MouseEventHandler<ReactNode>) => {},
+    onClick: (mouseEvent: React.MouseEvent<ReactNode>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<ReactNode>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<ReactNode>) => {},
     children: []
 };
 
@@ -25,8 +25,8 @@ const squareProps: ISquareProps = {
     size: 0,
     style: {},
     transform: "translate(0, 1)",
-    onClick: (mouseEvent: MouseEventHandler<SVGGElement>) => {},
-    onMouseOver: (mouseEvent: MouseEventHandler<SVGGElement>) => {},
-    onMouseOut: (mouseEvent: MouseEventHandler<SVGGElement>) => {},
+    onClick: (mouseEvent: React.MouseEvent<SVGGElement>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<SVGGElement>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<SVGGElement>) => {},
     // children: // a ReactNode
 };
