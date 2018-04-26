@@ -117,6 +117,18 @@ declare module 'boardgame.io/ui' {
     export class Deck extends React.Component<IDeckProps, IDeckState>{
         constructor(props: IDeckProps);
     }
+    export interface ICardState {
+        cards: ReactNode[]
+    }
+    export interface ICardProps {
+        back: ReactNode,
+        canHover: boolean,
+        className: string,
+        front: ReactNode,
+        isFaceUp: boolean,
+    }
+    // Strictly, it returns a <div>, but I don't know how to specify that.
+    export function Card ({ back, canHover, className, front, isFaceUp, ...rest }: ICardProps): ReactNode;
     declare module 'boardgame.io/core' {
     export class FlowObj {
         ctx: (players: number) => any;
