@@ -10,13 +10,11 @@ const gridProps: IGridProps = {
         "0,1": "black"
     },
     cellSize: 0,
-    onClick: (mouseEvent: React.MouseEvent<ReactNode>) => {},
-    onMouseOver: (mouseEvent: React.MouseEvent<ReactNode>) => {},
-    onMouseOut: (mouseEvent: React.MouseEvent<ReactNode>) => {},
+    onClick: (mouseEvent: React.MouseEvent<Element>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<Element>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<Element>) => {},
     children: []
 };
-
-let mouseEvent: React.MouseEvent<ReactNode>;
 
 
 const squareProps: ISquareProps = {
