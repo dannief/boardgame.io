@@ -1,8 +1,5 @@
 import { ReactNode } from 'react';
 
-export interface ICardState {
-    cards: ReactNode[]
-}
 export interface ICardProps {
     back: ReactNode,
     canHover: boolean,

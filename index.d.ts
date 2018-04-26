@@ -117,9 +117,6 @@ declare module 'boardgame.io/ui' {
     export class Deck extends React.Component<IDeckProps, IDeckState>{
         constructor(props: IDeckProps);
     }
-    export interface ICardState {
-        cards: ReactNode[]
-    }
     export interface ICardProps {
         back: ReactNode,
         canHover: boolean,
@@ -128,7 +125,15 @@ declare module 'boardgame.io/ui' {
         isFaceUp: boolean,
     }
     // Strictly, it returns a <div>, but I don't know how to specify that.
+    // FIXME: Can't figure out correct typing for stateless component function
     export function Card ({ back, canHover, className, front, isFaceUp, ...rest }: ICardProps): ReactNode;
+    export interface ILogoProps {
+        width: string,
+        height: string
+    }
+    // FIXME: Can't figure out correct typing for stateless component function
+    // FIXME: Not sure how to deal with default exports in this (single-file declaration) context.
+    // export default function Logo ({ width, height }: ILogoProps): ReactNode;
     declare module 'boardgame.io/core' {
     export class FlowObj {
         ctx: (players: number) => any;
