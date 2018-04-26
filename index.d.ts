@@ -105,6 +105,18 @@ declare module 'boardgame.io/ui' {
         onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
         onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
     }
+    export interface IDeckState {
+        cards: ReactNode[]
+    }
+    export interface IDeckProps {
+        cards?: ReactNode[],
+        className?: string,
+        onClick(mouseEvent?: React.MouseEvent<Element>): void,
+        splayWidth?: number,
+    }
+    export class Deck extends React.Component<IDeckProps, IDeckState>{
+        constructor(props: IDeckProps);
+    }
     declare module 'boardgame.io/core' {
     export class FlowObj {
         ctx: (players: number) => any;
