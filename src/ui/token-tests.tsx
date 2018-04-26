@@ -1,5 +1,4 @@
 import { ITokenProps, Token } from './token';
-
 import { MouseEventHandler } from 'react';
 
 const tokenProps: ITokenProps = {
