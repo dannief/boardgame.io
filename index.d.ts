@@ -7,23 +7,24 @@
  */
 import { Component, CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import * as React from 'react';
-import { IGridColorMap } from './src/ui/grid';
+import { IGridColorMap, Square } from './src/ui/grid';
+import { IHexGridProps } from './src/ui/hex';
 
 declare module 'boardgame.io/ui' {
     import * as React from 'react';
     import { Component, ReactNode } from 'react';
-    export interface ITokenProps {
+    export interface ITokenProps extends GenericInteractiveProps {
         x: number;
         y: number;
         z?: number;
         template?: Square, // FIXME: Best guess.
-        style?: CSSProperties,
         animate: boolean,
-        // TODO: re-assess parameters for these mouse events.
-        onClick?: (coord: any, mouseEvent: React.MouseEvent<Token>) => void,
-        onMouseOver?: (mouseEvent: React.MouseEvent<Token>) => void,
-        onMouseOut?: (mouseEvent: React.MouseEvent<Token>) => void,
         children?: ReactNode[],
+        style?: CSSProperties,
+        // Strictly, the MouseEvent is of whatever element type Square is, but I have no idea.
+        onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
         animationDuration?: number
     }
     export interface ITokenState {
@@ -44,17 +45,40 @@ declare module 'boardgame.io/ui' {
         rows: number,
         cols: number,
     }
-    export interface GenericGridProps {
-        outline?: boolean,
+    export interface GenericInteractiveProps {
         style?: CSSProperties,
-        colorMap?: IGridColorMap,
-        cellSize?: number,
-        onClick?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
-        onMouseOver?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
-        onMouseOut?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
+        onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
         children?: ReactNode[]|ReactNode,
     }
+    export interface GenericGridProps extends GenericInteractiveProps {
+        outline?: boolean,
+        colorMap?: IGridColorMap,
+        cellSize?: number
+    }
     export class Grid extends React.Component<IGridProps, {}> {
+    }
+    export class HexGrid extends React.Component<IHexGridProps, {}> {
+        private _getCellColor(x: number, y: number, z: number): string;
+        private _getGrid(): Hex[]|null;
+        onClick(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
+    }
+    export interface IHexProps extends GenericInteractiveProps {
+        x?: number,
+        y?: number,
+        z?: number,
+        size?: number,
+        children: ReactNode // Doesn't accept an array.
+    }
+    export class Hex extends React.Component<IHexProps, {}>{
+        constructor(props: IHexProps);
+        width(): number;
+        height(): number;
+        center(): { x: number, y: number };
+        points(): string;
     }
     export interface ISquareProps {
         x: number;

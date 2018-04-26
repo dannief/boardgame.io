@@ -9,15 +9,17 @@ export interface IGridProps extends GenericGridProps {
     rows: number,
     cols: number,
 }
-export interface GenericGridProps {
-    outline?: boolean,
+export interface GenericInteractiveProps {
     style?: CSSProperties,
-    colorMap?: IGridColorMap,
-    cellSize?: number,
-    onClick?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
-    onMouseOver?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
-    onMouseOut?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
+    onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
+    onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
+    onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
     children?: ReactNode[]|ReactNode,
+}
+export interface GenericGridProps extends GenericInteractiveProps {
+    outline?: boolean,
+    colorMap?: IGridColorMap,
+    cellSize?: number
 }
 export class Grid extends React.Component<IGridProps, {}> {
 }

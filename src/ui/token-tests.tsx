@@ -7,9 +7,9 @@ const tokenProps: ITokenProps = {
     // template: new Square(props, state),
     style: {},
     animate: false,
-    onClick: (coord: any, ev: React.MouseEvent<Token>) => {},
-    onMouseOver: (mouseEvent: React.MouseEvent<Token>) => {},
-    onMouseOut: (mouseEvent: React.MouseEvent<Token>) => {},
+    onClick: (mouseEvent: React.MouseEvent<Element>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<Element>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<Element>) => {},
     children: [],
     animationDuration: 0,
 };

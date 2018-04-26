@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { Component, ReactNode } from 'react';
 import { CSSProperties } from 'react';
-import { Square } from './grid';
+import { GenericInteractiveProps, Square } from './grid';
 
-export interface ITokenProps {
+export interface ITokenProps extends GenericInteractiveProps {
     x: number;
     y: number;
     z?: number;
     template?: Square, // FIXME: Best guess.
-    style?: CSSProperties,
     animate: boolean,
-    // TODO: re-assess parameters for these mouse events.
-    onClick?: (coord: any, mouseEvent: React.MouseEvent<Token>) => void,
-    onMouseOver?: (mouseEvent: React.MouseEvent<Token>) => void,
-    onMouseOut?: (mouseEvent: React.MouseEvent<Token>) => void,
     children?: ReactNode[],
+    style?: CSSProperties,
+    // Strictly, the MouseEvent is of whatever element type Square is, but I have no idea.
+    onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
+    onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
+    onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
     animationDuration?: number
 }
 // I noticed that no state is initialised upon construction, so I guess these are all optional..?
