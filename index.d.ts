@@ -5,7 +5,9 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import { Component, MouseEventHandler, ReactNode } from 'react';
+import { Component, CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import * as React from 'react';
+import { IGridColorMap } from './src/ui/grid';
 
 declare module 'boardgame.io/ui' {
     import * as React from 'react';
@@ -14,32 +16,56 @@ declare module 'boardgame.io/ui' {
         x: number;
         y: number;
         z?: number;
-        template: any,
-        style?: any,
+        template?: Square, // FIXME: Best guess.
+        style?: CSSProperties,
         animate: boolean,
         // TODO: re-assess parameters for these mouse events.
         onClick?: (coord: any, mouseEvent: MouseEventHandler<Token>) => void,
         onMouseOver?: (mouseEvent: MouseEventHandler<Token>) => void,
         onMouseOut?: (mouseEvent: MouseEventHandler<Token>) => void,
         children?: ReactNode[],
-        animationDuration: number
+        animationDuration?: number
     }
-    export class Token extends React.Component<ITokenProps, any> {
+    export interface ITokenState {
+        x?: number,
+        y?: number,
+        z?: number,
+        originTime?: number,
+        originX?: number,
+        originY?: number,
+        originZ?: number,
     }
-    interface IGridColorMap {
+    export class Token extends React.Component<ITokenProps, ITokenState> {
+    }
+    export interface IGridColorMap {
         [key: string]: string;
     }
-    interface IGridProps {
-        rows: number;
-        cols: number;
-        outline?: boolean;
-        style?: React.CSSProperties;
-        colorMap?: IGridColorMap;
-        cellSize?: number;
-        onClick: (coords: any) => void;
-        children?: any;
+    export interface IGridProps {
+        rows: number,
+        cols: number,
+        outline?: boolean,
+        style?: CSSProperties,
+        colorMap?: IGridColorMap,
+        cellSize?: number,
+        onClick?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
+        onMouseOver?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
+        onMouseOut?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
+        children?: ReactNode[]|ReactNode
     }
-    export class Grid extends React.Component<IGridProps, any> {
+    export class Grid extends React.Component<IGridProps, {}> {
+    }
+    export interface ISquareProps {
+        x: number;
+        y: number;
+        size?: number,
+        style?: CSSProperties,
+        transform?: string,
+        onClick?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
+        onMouseOver?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
+        onMouseOut?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
+        children?: ReactNode
+    }
+    export class Square extends React.Component<ISquareProps, {}> {
     }
     declare module 'boardgame.io/core' {
     export class FlowObj {
