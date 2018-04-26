@@ -39,7 +39,8 @@
     "react.js",
     "react-native.js",
     "core.js",
-    "ui.js"
+    "ui.js",
+    "index.d.ts"
   ],
   "keywords": [
     "react",
