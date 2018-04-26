@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, MouseEventHandler, ReactNode } from 'react';
+import { Component, ReactNode } from 'react';
 import { CSSProperties } from 'react';
 import { Square } from './grid';
 
@@ -11,9 +11,9 @@ export interface ITokenProps {
     style?: CSSProperties,
     animate: boolean,
     // TODO: re-assess parameters for these mouse events.
-    onClick?: (coord: any, mouseEvent: MouseEventHandler<Token>) => void,
-    onMouseOver?: (mouseEvent: MouseEventHandler<Token>) => void,
-    onMouseOut?: (mouseEvent: MouseEventHandler<Token>) => void,
+    onClick?: (coord: any, mouseEvent: React.MouseEvent<Token>) => void,
+    onMouseOver?: (mouseEvent: React.MouseEvent<Token>) => void,
+    onMouseOut?: (mouseEvent: React.MouseEvent<Token>) => void,
     children?: ReactNode[],
     animationDuration?: number
 }

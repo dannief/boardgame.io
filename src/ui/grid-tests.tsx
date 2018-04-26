@@ -16,6 +16,9 @@ const gridProps: IGridProps = {
     children: []
 };
 
+let mouseEvent: React.MouseEvent<ReactNode>;
+
+
 const squareProps: ISquareProps = {
     x: 0,
     y: 0,

@@ -20,9 +20,9 @@ declare module 'boardgame.io/ui' {
         style?: CSSProperties,
         animate: boolean,
         // TODO: re-assess parameters for these mouse events.
-        onClick?: (coord: any, mouseEvent: MouseEventHandler<Token>) => void,
-        onMouseOver?: (mouseEvent: MouseEventHandler<Token>) => void,
-        onMouseOut?: (mouseEvent: MouseEventHandler<Token>) => void,
+        onClick?: (coord: any, mouseEvent: React.MouseEvent<Token>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<Token>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<Token>) => void,
         children?: ReactNode[],
         animationDuration?: number
     }
@@ -40,17 +40,19 @@ declare module 'boardgame.io/ui' {
     export interface IGridColorMap {
         [key: string]: string;
     }
-    export interface IGridProps {
+    export interface IGridProps extends GenericGridProps {
         rows: number,
         cols: number,
+    }
+    export interface GenericGridProps {
         outline?: boolean,
         style?: CSSProperties,
         colorMap?: IGridColorMap,
         cellSize?: number,
-        onClick?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
-        onMouseOver?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
-        onMouseOut?: (mouseEvent: MouseEventHandler<ReactNode>) => void,
-        children?: ReactNode[]|ReactNode
+        onClick?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<ReactNode>) => void,
+        children?: ReactNode[]|ReactNode,
     }
     export class Grid extends React.Component<IGridProps, {}> {
     }
@@ -60,9 +62,9 @@ declare module 'boardgame.io/ui' {
         size?: number,
         style?: CSSProperties,
         transform?: string,
-        onClick?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
-        onMouseOver?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
-        onMouseOut?: (mouseEvent: MouseEventHandler<SVGGElement>) => void,
+        onClick?: (mouseEvent: React.MouseEvent<SVGGElement>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<SVGGElement>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<SVGGElement>) => void,
         children?: ReactNode
     }
     export class Square extends React.Component<ISquareProps, {}> {

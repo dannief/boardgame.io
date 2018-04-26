@@ -1,5 +1,4 @@
 import { ITokenProps, Token } from './token';
-import { MouseEventHandler } from 'react';
 
 const tokenProps: ITokenProps = {
     x: 0,
@@ -8,9 +7,9 @@ const tokenProps: ITokenProps = {
     // template: new Square(props, state),
     style: {},
     animate: false,
-    onClick: (coord: any, ev: MouseEventHandler<Token>) => {},
-    onMouseOver: (mouseEvent: MouseEventHandler<Token>) => {},
-    onMouseOut: (mouseEvent: MouseEventHandler<Token>) => {},
+    onClick: (coord: any, ev: React.MouseEvent<Token>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<Token>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<Token>) => {},
     children: [],
     animationDuration: 0,
 };
