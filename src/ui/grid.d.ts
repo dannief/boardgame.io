@@ -22,6 +22,11 @@ export interface GenericGridProps extends GenericInteractiveProps {
     cellSize?: number
 }
 export class Grid extends React.Component<IGridProps, {}> {
+    private _getCellColor(x: number, y: number): string;
+    private _getGrid(): Square[]|null;
+    onClick(mouseEvent: React.MouseEvent<Element>): void;
+    onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
+    onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
 }
 export interface ISquareProps {
     x: number;
@@ -35,4 +40,7 @@ export interface ISquareProps {
     children?: ReactNode
 }
 export class Square extends React.Component<ISquareProps, {}> {
+    onClick(mouseEvent: React.MouseEvent<Element>): void;
+    onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
+    onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
 }

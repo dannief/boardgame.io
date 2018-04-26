@@ -7,8 +7,9 @@
  */
 import { Component, CSSProperties, MouseEventHandler, ReactNode } from 'react';
 import * as React from 'react';
-import { IGridColorMap, Square } from './src/ui/grid';
+import { IGridColorMap, IGridProps, Square } from './src/ui/grid';
 import { IHexGridProps } from './src/ui/hex';
+import { ITokenProps, ITokenState } from './src/ui/token';
 
 declare module 'boardgame.io/ui' {
     import * as React from 'react';
@@ -37,6 +38,9 @@ declare module 'boardgame.io/ui' {
         originZ?: number,
     }
     export class Token extends React.Component<ITokenProps, ITokenState> {
+        private _animate(now: number): void;
+        getCoords(props?: ITokenProps): { x: number, y: number, z: number };
+        private _easeInOutCubic(t: number, b: number, c: number, d: number): number;
     }
     export interface IGridColorMap {
         [key: string]: string;
@@ -58,6 +62,11 @@ declare module 'boardgame.io/ui' {
         cellSize?: number
     }
     export class Grid extends React.Component<IGridProps, {}> {
+        private _getCellColor(x: number, y: number): string;
+        private _getGrid(): Square[]|null;
+        onClick(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
     }
     export class HexGrid extends React.Component<IHexGridProps, {}> {
         private _getCellColor(x: number, y: number, z: number): string;
@@ -92,6 +101,9 @@ declare module 'boardgame.io/ui' {
         children?: ReactNode
     }
     export class Square extends React.Component<ISquareProps, {}> {
+        onClick(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
+        onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
     }
     declare module 'boardgame.io/core' {
     export class FlowObj {

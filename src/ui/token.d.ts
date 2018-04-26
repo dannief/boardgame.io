@@ -28,4 +28,7 @@ export interface ITokenState {
     originZ?: number,
 }
 export class Token extends React.Component<ITokenProps, ITokenState> {
+    private _animate(now: number): void;
+    getCoords(props?: ITokenProps): { x: number, y: number, z: number };
+    private _easeInOutCubic(t: number, b: number, c: number, d: number): number;
 }
