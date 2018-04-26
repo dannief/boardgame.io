@@ -5,18 +5,24 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
+import { Component, MouseEventHandler, ReactNode } from 'react';
+
 declare module 'boardgame.io/ui' {
     import * as React from 'react';
-    interface ITokenProps {
-        x?: number;
-        y?: number;
+    import { Component, ReactNode } from 'react';
+    export interface ITokenProps {
+        x: number;
+        y: number;
         z?: number;
-        style?: React.CSSProperties;
-        animate?: boolean;
-        onClick?: (coord: any) => void;
-        children?: any;
-        animationDuration?: number;
-        square?: string;
+        template: any,
+        style?: any,
+        animate: boolean,
+        // TODO: re-assess parameters for these mouse events.
+        onClick?: (coord: any, mouseEvent: MouseEventHandler<Token>) => void,
+        onMouseOver?: (mouseEvent: MouseEventHandler<Token>) => void,
+        onMouseOut?: (mouseEvent: MouseEventHandler<Token>) => void,
+        children?: ReactNode[],
+        animationDuration: number
     }
     export class Token extends React.Component<ITokenProps, any> {
     }
