@@ -11,3 +11,25 @@ export class InMemory {
     get(id: Id): Promise<State|undefined>;
     has(id: Id): Promise<boolean>;
 }
+
+type MongoClient = any; // TODO: import types for 'mongodb'.MongoClient
+type MongoClientDb = any; // TODO: import types for 'mongodb'.MongoClient.connect().db
+type LRU = any; // TODO: import types for lru-cache
+export interface MongoInput {
+    url: string,
+    dbname?: string,
+    cacheSize?: number,
+    mockClient?: MongoClient,
+}
+export class Mongo {
+    public client: MongoClient;
+    public url: string;
+    public dbname: string;
+    public cache: LRU;
+    public db: MongoClientDb;
+    constructor({ url, dbname, cacheSize, mockClient }: MongoInput);
+    connect(): Promise<void>;
+    set(id: Id, state: State): Promise<GamesMap>;
+    get(id: Id): Promise<State|undefined>;
+    has(id: Id): Promise<boolean>;
+}
