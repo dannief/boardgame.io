@@ -5,7 +5,15 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import { Component, CSSProperties, DOMAttributes, MouseEventHandler, ReactElement, ReactNode } from 'react';
+import {
+    Component,
+    CSSProperties,
+    DOMAttributes,
+    HTMLAttributes,
+    MouseEventHandler,
+    ReactElement,
+    ReactNode,
+} from 'react';
 import * as React from 'react';
 import { IGridColorMap, IGridProps, Square } from './src/ui/grid';
 import { IHexGridProps } from './src/ui/hex';
@@ -109,13 +117,14 @@ declare module 'boardgame.io/ui' {
         cards: ReactNode[]
     }
     export interface IDeckProps {
-        cards?: ReactNode[],
+        cards?: ReactElement<ICardPropsCombined>[],
         className?: string,
-        onClick(mouseEvent?: React.MouseEvent<Element>): void,
+        onClick?(mouseEvent?: React.MouseEvent<HTMLDivElement>): void,
         splayWidth?: number,
     }
-    export class Deck extends React.Component<IDeckProps, IDeckState>{
-        constructor(props: IDeckProps);
+    export type IDeckPropsCombined = IDeckProps & HTMLAttributes<HTMLDivElement>;
+    export class Deck extends React.Component<IDeckPropsCombined, IDeckState>{
+        constructor(props: IDeckPropsCombined);
     }
     export interface ICardProps {
         back?: ReactNode,
