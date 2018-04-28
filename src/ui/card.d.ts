@@ -1,4 +1,4 @@
-import { DOMAttributes, ReactElement, ReactNode } from 'react';
+import { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export interface ICardProps {
     back?: ReactNode,
@@ -7,5 +7,5 @@ export interface ICardProps {
     front?: ReactNode,
     isFaceUp?: boolean
 }
-export type ICardPropsCombined = ICardProps & DOMAttributes<HTMLDivElement>;
+export type ICardPropsCombined = ICardProps & HTMLAttributes<HTMLDivElement>;
 export const Card: (props: ICardPropsCombined, ...rest: any[]) => ReactElement<ICardPropsCombined>;
