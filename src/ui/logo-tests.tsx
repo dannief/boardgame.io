@@ -1,8 +1,9 @@
-import { ILogoProps, default as Logo } from './logo';
+import * as React from 'react';
+import Logo, { ILogoProps } from './logo';
 
 const logoProps: ILogoProps = {
     width: "24",
     height: "35"
 };
-// FIXME: Can't figure out correct typing for stateless component function
-<Logo></Logo>
+
+<Logo width={logoProps.width} height={logoProps.height}/>

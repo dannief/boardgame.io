@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import { Component, CSSProperties, MouseEventHandler, ReactNode } from 'react';
+import { Component, CSSProperties, MouseEventHandler, ReactElement, ReactNode } from 'react';
 import * as React from 'react';
 import { IGridColorMap, IGridProps, Square } from './src/ui/grid';
 import { IHexGridProps } from './src/ui/hex';
@@ -131,9 +131,9 @@ declare module 'boardgame.io/ui' {
         width: string,
         height: string
     }
-    // FIXME: Can't figure out correct typing for stateless component function
+    export const Logo: (props: ILogoProps) => ReactElement<ILogoProps>;
     // FIXME: Not sure how to deal with default exports in this (single-file declaration) context.
-    // export default function Logo ({ width, height }: ILogoProps): ReactNode;
+    // export default Logo;
     declare module 'boardgame.io/core' {
     export class FlowObj {
         ctx: (players: number) => any;
