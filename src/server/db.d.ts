@@ -13,7 +13,6 @@ export class InMemory {
     get(id: Id): Promise<State|undefined>;
     has(id: Id): Promise<boolean>;
 }
-
 export interface MongoInput {
     url: string,
     dbname?: string,

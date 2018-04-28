@@ -6,7 +6,7 @@ export interface Moves {
 }
 export interface Action {
     type: string,
-    playerID: number|string,
+    playerID: string,
     // TODO: double-check this type; unlikely to be correct.
     args: GameArgsSpread // GameArgs spread
 }

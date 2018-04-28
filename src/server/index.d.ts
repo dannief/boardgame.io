@@ -1,19 +1,16 @@
 import { G } from '../core/game';
+import { Flow } from '../core/flow';
 
 export interface Context {
     _random?: any
 }
-export interface Flow {
-    // Where G matches
-    canMakeMove(G: G, ctx: Context): void;
-}
-export interface GameObj {
+export interface Game {
     name: string,
     flow: Flow,
     playerView(G: G, ctx: Context, playerID: number|string): G;
 }
 export interface ServerArgs {
-    games: GameObj[],
+    games: Game[],
     db: any,
     _clientInfo: any,
     _roomInfo: any
