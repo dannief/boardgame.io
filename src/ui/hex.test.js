@@ -28,7 +28,7 @@ test('outline', () => {
 test('click handler', () => {
   {
     const onClick = jest.fn();
-    const grid = Enzyme.mount(<HexGrid layers={4} onClick={onClick} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} onClick={onClick} />);
     grid
       .find('Hex')
       .at(0)
@@ -38,7 +38,7 @@ test('click handler', () => {
 
   // No crash when onClick is not provided.
   {
-    const grid = Enzyme.mount(<HexGrid layers={4} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} />);
     grid
       .find('Hex')
       .at(0)
@@ -49,7 +49,7 @@ test('click handler', () => {
 test('mouse over handler', () => {
   {
     const onMouseOver = jest.fn();
-    const grid = Enzyme.mount(<HexGrid layers={4} onMouseOver={onMouseOver} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} onMouseOver={onMouseOver} />);
     grid
       .find('Hex')
       .at(0)
@@ -59,7 +59,7 @@ test('mouse over handler', () => {
 
   // No crash when onMouseOver is not provided.
   {
-    const grid = Enzyme.mount(<HexGrid layers={4} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} />);
     grid
       .find('Hex')
       .at(0)
@@ -70,7 +70,7 @@ test('mouse over handler', () => {
 test('mouse out handler', () => {
   {
     const onMouseOut = jest.fn();
-    const grid = Enzyme.mount(<HexGrid layers={4} onMouseOut={onMouseOut} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} onMouseOut={onMouseOut} />);
     grid
       .find('Hex')
       .at(0)
@@ -80,7 +80,7 @@ test('mouse out handler', () => {
 
   // No crash when onMouseOut is not provided.
   {
-    const grid = Enzyme.mount(<HexGrid layers={4} />);
+    const grid = Enzyme.mount(<HexGrid levels={4} />);
     grid
       .find('Hex')
       .at(0)
@@ -91,7 +91,7 @@ test('mouse out handler', () => {
 test('child', () => {
   {
     const grid = Enzyme.mount(
-      <HexGrid layers={2} outline={false}>
+      <HexGrid levels={2} outline={false}>
         <Token />
       </HexGrid>
     );
@@ -100,7 +100,7 @@ test('child', () => {
 
   {
     const grid = Enzyme.mount(
-      <HexGrid layers={2} outline={false}>
+      <HexGrid levels={2} outline={false}>
         <Token>
           <div />
         </Token>
@@ -112,6 +112,6 @@ test('child', () => {
 
 test('colorMap', () => {
   const colorMap = { '0,0,0': '#123' };
-  const grid = Enzyme.mount(<HexGrid layers={1} colorMap={colorMap} />);
+  const grid = Enzyme.mount(<HexGrid levels={1} colorMap={colorMap} />);
   expect(grid.html()).toContain('fill: #123');
 });
