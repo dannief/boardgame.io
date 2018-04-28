@@ -15,7 +15,7 @@ export interface G {
     setup: any,
     playerView: any,
     flow: any,
-    seed: number,
+    seed: string,
     moveNames: string[],
     processMove: (G: G, action: Action, ctx: Context) => G;
 }
