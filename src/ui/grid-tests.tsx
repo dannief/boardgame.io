@@ -10,9 +10,9 @@ const gridProps: IGridProps = {
         "0,1": "black"
     },
     cellSize: 0,
-    onClick: (mouseEvent: React.MouseEvent<Element>) => {},
-    onMouseOver: (mouseEvent: React.MouseEvent<Element>) => {},
-    onMouseOut: (mouseEvent: React.MouseEvent<Element>) => {},
+    onClick: (mouseEvent: React.MouseEvent<SVGElement>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<SVGElement>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<SVGElement>) => {},
     children: []
 };
 

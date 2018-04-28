@@ -15,7 +15,7 @@ import {
     ReactNode,
 } from 'react';
 import * as React from 'react';
-import { IGridColorMap, IGridProps, Square } from './src/ui/grid';
+import { GenericInteractiveProps, IGridColorMap, IGridProps, Square } from './src/ui/grid';
 import { IHexGridProps } from './src/ui/hex';
 import { ITokenProps, ITokenState } from './src/ui/token';
 
@@ -57,7 +57,7 @@ declare module 'boardgame.io/ui' {
         onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
         onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
     }
-    export interface IHexProps extends GenericInteractiveProps {
+    export interface IHexProps extends GenericInteractiveProps<SVGGElement> {
         x?: number,
         y?: number,
         z?: number,
@@ -76,19 +76,19 @@ declare module 'boardgame.io/ui' {
     }
     export interface IGridProps extends GenericGridProps {
         rows: number,
-        cols: number,
+        cols: number
     }
-    export interface GenericInteractiveProps {
-        style?: CSSProperties,
-        onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
-        onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
-        onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
-        children?: ReactNode[]|ReactNode,
-    }
-    export interface GenericGridProps extends GenericInteractiveProps {
+    export interface GenericGridProps extends GenericInteractiveProps<SVGElement> {
         outline?: boolean,
         colorMap?: IGridColorMap,
         cellSize?: number
+    }
+    export interface GenericInteractiveProps<T extends Element> {
+        style?: CSSProperties,
+        onClick?: (mouseEvent: React.MouseEvent<T>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<T>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<T>) => void,
+        children?: ReactNode[]|ReactNode,
     }
     export type IGridPropsCombined = IGridProps & HTMLAttributes<SVGElement>;
     export class Grid extends React.Component<IGridPropsCombined, {}> {

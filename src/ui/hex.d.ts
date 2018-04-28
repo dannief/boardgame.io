@@ -12,7 +12,7 @@ export class HexGrid extends React.Component<IHexGridProps, {}> {
     onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
     onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
 }
-export interface IHexProps extends GenericInteractiveProps {
+export interface IHexProps extends GenericInteractiveProps<SVGGElement> {
     x?: number,
     y?: number,
     z?: number,
