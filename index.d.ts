@@ -50,32 +50,6 @@ declare module 'boardgame.io/ui' {
         getCoords(props?: ITokenProps): { x: number, y: number, z: number };
         private _easeInOutCubic(t: number, b: number, c: number, d: number): number;
     }
-    export interface IGridColorMap {
-        [key: string]: string;
-    }
-    export interface IGridProps extends GenericGridProps {
-        rows: number,
-        cols: number,
-    }
-    export interface GenericInteractiveProps {
-        style?: CSSProperties,
-        onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
-        onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
-        onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
-        children?: ReactNode[]|ReactNode,
-    }
-    export interface GenericGridProps extends GenericInteractiveProps {
-        outline?: boolean,
-        colorMap?: IGridColorMap,
-        cellSize?: number
-    }
-    export class Grid extends React.Component<IGridProps, {}> {
-        private _getCellColor(x: number, y: number): string;
-        private _getGrid(): Square[]|null;
-        onClick(mouseEvent: React.MouseEvent<Element>): void;
-        onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
-        onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
-    }
     export class HexGrid extends React.Component<IHexGridProps, {}> {
         private _getCellColor(x: number, y: number, z: number): string;
         private _getGrid(): Hex[]|null;
@@ -97,6 +71,33 @@ declare module 'boardgame.io/ui' {
         center(): { x: number, y: number };
         points(): string;
     }
+    export interface IGridColorMap {
+        [key: string]: string;
+    }
+    export interface IGridProps extends GenericGridProps {
+        rows: number,
+        cols: number,
+    }
+    export interface GenericInteractiveProps {
+        style?: CSSProperties,
+        onClick?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOver?: (mouseEvent: React.MouseEvent<Element>) => void,
+        onMouseOut?: (mouseEvent: React.MouseEvent<Element>) => void,
+        children?: ReactNode[]|ReactNode,
+    }
+    export interface GenericGridProps extends GenericInteractiveProps {
+        outline?: boolean,
+        colorMap?: IGridColorMap,
+        cellSize?: number
+    }
+    export type IGridPropsCombined = IGridProps & HTMLAttributes<SVGElement>;
+    export class Grid extends React.Component<IGridPropsCombined, {}> {
+        private _getCellColor(x: number, y: number): string;
+        private _getGrid(): Square[]|null;
+        onClick(mouseEvent: React.MouseEvent<SVGElement>): void;
+        onMouseOver(mouseEvent: React.MouseEvent<SVGElement>): void;
+        onMouseOut(mouseEvent: React.MouseEvent<SVGElement>): void;
+    }
     export interface ISquareProps {
         x: number;
         y: number;
@@ -108,11 +109,13 @@ declare module 'boardgame.io/ui' {
         onMouseOut?: (mouseEvent: React.MouseEvent<SVGGElement>) => void,
         children?: ReactNode
     }
-    export class Square extends React.Component<ISquareProps, {}> {
+    export type ISquarePropsCombined = ISquareProps & HTMLAttributes<SVGGElement>;
+    export class Square extends React.Component<ISquarePropsCombined, {}> {
         onClick(mouseEvent: React.MouseEvent<Element>): void;
         onMouseOver(mouseEvent: React.MouseEvent<Element>): void;
         onMouseOut(mouseEvent: React.MouseEvent<Element>): void;
     }
+
     export interface IDeckState {
         cards: ReactNode[]
     }
