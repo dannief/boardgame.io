@@ -1,5 +1,14 @@
-import { CSSProperties, MouseEventHandler, ReactNode } from 'react';
-import { IGridColorMap, IGridProps, ISquareProps } from './grid';
+import * as React from 'react';
+import { CSSProperties, MouseEventHandler, ReactElement, ReactNode } from 'react';
+import { Grid, IGridColorMap, IGridProps, ISquareProps } from './grid';
+import { IDeckProps } from './deck';
+import { Token } from './token';
+
+class MockChild extends React.Component<{}, {}> {
+    render() {
+        return <rect width="3" height="2" style={{ fill: 'red' }} />;
+    }
+}
 
 const gridProps: IGridProps = {
     rows: 0,
@@ -15,6 +24,33 @@ const gridProps: IGridProps = {
     onMouseOut: (mouseEvent: React.MouseEvent<SVGElement>) => {},
     children: []
 };
+
+const gridTsxTests: ReactElement<IDeckProps>[] = [
+    (
+        <Grid rows={3} cols={4} style={{ width: '500px' }}>
+            <MockChild />
+        </Grid>
+    ),
+    (
+        <Grid rows={3} cols={4} outline={false} />
+    ),
+    (
+        <Grid rows={3} cols={4} onClick={gridProps.onClick} />
+    ),
+    (
+        <Grid rows={3} cols={4} />
+    ),
+    (
+        <Grid rows={3} cols={4} onMouseOver={gridProps.onMouseOver} />
+    ),
+    (
+        <Grid rows={3} cols={4} style={{ width: '500px' }}>
+            <Token x={1} y={2}>
+                <MockChild />
+            </Token>
+        </Grid>
+    )
+];
 
 
 const squareProps: ISquareProps = {

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ITokenProps, Token } from './token';
 
 const tokenProps: ITokenProps = {
@@ -7,9 +8,9 @@ const tokenProps: ITokenProps = {
     // template: new Square(props, state),
     style: {},
     animate: false,
-    onClick: (mouseEvent: React.MouseEvent<Element>) => {},
-    onMouseOver: (mouseEvent: React.MouseEvent<Element>) => {},
-    onMouseOut: (mouseEvent: React.MouseEvent<Element>) => {},
+    onClick: (mouseEvent: React.MouseEvent<HTMLElement>) => {},
+    onMouseOver: (mouseEvent: React.MouseEvent<HTMLElement>) => {},
+    onMouseOut: (mouseEvent: React.MouseEvent<HTMLElement>) => {},
     children: [],
     animationDuration: 0,
 };
