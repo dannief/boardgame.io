@@ -1,3 +1,6 @@
+import * as LRU from "lru-cache";
+import { MongoClient, Db } from 'mongodb';
+
 type Id = string;
 type State = any;
 type GamesMap = Map<Id, State>;
@@ -6,15 +9,11 @@ export class InMemory {
     public games: GamesMap;
     constructor();
     connect(): Promise<void>;
-    // FIXME: this.games calls set() and get() functions
     set(id: Id, state: State): Promise<GamesMap>;
     get(id: Id): Promise<State|undefined>;
     has(id: Id): Promise<boolean>;
 }
 
-type MongoClient = any; // TODO: import types for 'mongodb'.MongoClient
-type MongoClientDb = any; // TODO: import types for 'mongodb'.MongoClient.connect().db
-type LRU = any; // TODO: import types for lru-cache
 export interface MongoInput {
     url: string,
     dbname?: string,
@@ -26,7 +25,7 @@ export class Mongo {
     public url: string;
     public dbname: string;
     public cache: LRU;
-    public db: MongoClientDb;
+    public db: Db;
     constructor({ url, dbname, cacheSize, mockClient }: MongoInput);
     connect(): Promise<void>;
     set(id: Id, state: State): Promise<GamesMap>;
