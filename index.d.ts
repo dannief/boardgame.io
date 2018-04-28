@@ -5,7 +5,7 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import { Component, CSSProperties, MouseEventHandler, ReactElement, ReactNode } from 'react';
+import { Component, CSSProperties, DOMAttributes, MouseEventHandler, ReactElement, ReactNode } from 'react';
 import * as React from 'react';
 import { IGridColorMap, IGridProps, Square } from './src/ui/grid';
 import { IHexGridProps } from './src/ui/hex';
@@ -118,15 +118,14 @@ declare module 'boardgame.io/ui' {
         constructor(props: IDeckProps);
     }
     export interface ICardProps {
-        back: ReactNode,
-        canHover: boolean,
-        className: string,
-        front: ReactNode,
-        isFaceUp: boolean,
+        back?: ReactNode,
+        canHover?: boolean,
+        className?: string,
+        front?: ReactNode,
+        isFaceUp?: boolean
     }
-    // Strictly, it returns a <div>, but I don't know how to specify that.
-    // FIXME: Can't figure out correct typing for stateless component function
-    export function Card ({ back, canHover, className, front, isFaceUp, ...rest }: ICardProps): ReactNode;
+    export type ICardPropsCombined = ICardProps & DOMAttributes<HTMLDivElement>;
+    export const Card: (props: ICardPropsCombined, ...rest: any[]) => ReactElement<ICardPropsCombined>;
     export interface ILogoProps {
         width: string,
         height: string

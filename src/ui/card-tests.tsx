@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { ICardProps } from './card';
+import { Card, ICardProps } from './card';
 import Logo from './logo';
+import { ReactElement } from 'react';
 
 const cardProps: ICardProps = {
-    // FIXME: Can't figure out correct typing for stateless component function
     back: (
         <div className="bgio-card__back">
             <Logo width="48" height="32" />
@@ -14,3 +14,18 @@ const cardProps: ICardProps = {
     front: <div className="bgio-card__front">Card</div>,
     isFaceUp: false,
 };
+
+const tsxTests: ReactElement<ICardProps>[] = [
+    (
+        <Card isFaceUp />
+    ),
+    (
+        <Card isFaceUp className="custom" />
+    ),
+    (
+        <Card
+            onMouseOver={(mouseEvent: React.MouseEvent<HTMLDivElement>)=>{}}
+            onClick={(mouseEvent: React.MouseEvent<HTMLDivElement>)=>{}}
+        />
+    )
+];
