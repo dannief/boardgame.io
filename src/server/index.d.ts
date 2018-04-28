@@ -1,8 +1,7 @@
+import { G } from '../core/game';
+
 export interface Context {
     _random?: any
-}
-export interface G {
-
 }
 export interface Flow {
     // Where G matches
@@ -11,7 +10,7 @@ export interface Flow {
 export interface GameObj {
     name: string,
     flow: Flow,
-    playerView(G: G, ctx: Context, playerID: string): G;
+    playerView(G: G, ctx: Context, playerID: number|string): G;
 }
 export interface ServerArgs {
     games: GameObj[],
