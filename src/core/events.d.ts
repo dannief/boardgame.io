@@ -1,7 +1,7 @@
 import { Flow } from './flow';
 import { Context } from '../server';
+import { State } from './game';
 
-type State = any;
 // TODO: review this typing
 export interface Dispatch {
     key: string,

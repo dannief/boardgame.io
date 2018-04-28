@@ -1,6 +1,7 @@
 import { Context } from '../server';
+import { State } from './game';
 
-export interface RandomState {
+export interface RandomState extends State {
     seed: string;
 }
 interface API {

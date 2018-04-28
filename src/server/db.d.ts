@@ -1,8 +1,8 @@
 import * as LRU from "lru-cache";
 import { MongoClient, Db } from 'mongodb';
+import { State } from '../core/game';
 
 type Id = string;
-type State = any;
 type GamesMap = Map<Id, State>;
 
 export class InMemory {
