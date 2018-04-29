@@ -1,4 +1,5 @@
-import { Action, State } from './game';
+import { State } from './game';
+import { Action } from './action-creators';
 export interface CreateGameReducerInput {
     game: any,
     numPlayers: number,

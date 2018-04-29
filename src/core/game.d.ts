@@ -1,15 +1,8 @@
 import { Context } from '../server';
+import { Action, MoveAction } from './action-creators';
+import { ActionTypes, ActionTypesKeyMap } from './action-types';
 
-export interface Moves {
-    // TODO: double-check this type; unlikely to be correct.
-    [actionType: string]: (...args: GameArgsSpread[])=>G;
-}
-export interface Action {
-    type: string,
-    playerID: string,
-    // TODO: double-check this type; unlikely to be correct.
-    args: GameArgsSpread // GameArgs spread
-}
+// TODO: double-check this type; unlikely to be completely correct.
 export interface State {
     // User managed state.
     G: G,
@@ -31,19 +24,31 @@ export interface State {
     // replayed over it to view old snapshots.
     _initial: State, // TODO: double-check
 }
+export interface FlowValue {
+    endGameIf: (G: G, ctx: Context, playerID: string) => string, // Guessing return type based on endTurnIf().
+    endTurnIf: (G: G, ctx: Context, playerID: string) => string, // From docs, returns playerID: http://boardgame.io/#/turn-order,
+    phases: Phase[]
+}
+export interface Phase {
+    name: string,
+    setup: (G: G, ctx: Context) => G,
+    cleanup: (G: G, ctx: Context) => G,
+}
 export interface G {
     name: string,
-    setup: any,
-    playerView: any,
-    flow: any,
+    setup: (numPlayers: number) => G,
+    playerView: (G: G, ctx: Context, playerID: string) => G,
+    flow: FlowValue,
     seed: string,
-    moveNames: string[],
-    processMove: (G: G, action: Action, ctx: Context) => G;
+    moveNames: (ActionTypes)[],
+    // TODO: determine whether the MoveAction is likely to have args of type other than simply 'any'.
+    processMove: (G: G, action: MoveAction<any>, ctx: Context) => G;
 }
 export interface GameArgs {
     name: string,
     setup: any,
-    moves: Moves,
+    // moves: Pick<ActionTypesKeyMap, "MAKE_MOVE">,
+    moves: Partial<ActionTypesKeyMap>,
     playerView: any,
     flow: any,
     seed: number,
