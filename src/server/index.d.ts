@@ -1,12 +1,12 @@
 import { G } from '../core/game';
-import { Flow } from '../core/flow';
+import { IFlow } from '../core/flow';
 
 export interface Context {
     _random?: any
 }
 export interface Game {
     name: string,
-    flow: Flow,
+    flow: IFlow,
     playerView(G: G, ctx: Context, playerID: number|string): G;
 }
 export interface ServerArgs {

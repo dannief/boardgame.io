@@ -2,17 +2,21 @@ import { G } from './game';
 import { Context } from '../server';
 
 export const Pass: (G: G, ctx: Context)=> G;
-export const TurnOrder: {
-    DEFAULT: {
-        first(G: G, ctx: Context): number;
-        next(G: G, ctx: Context): number;
-    },
-    ANY: {
-        first(): undefined;
-        next(): undefined;
-    },
-    SKIP: {
-        first(G: G, ctx: Context): number;
-        next(G: G, ctx: Context): number|void;
-    }
-};
+export interface DefaultTurnOrder {
+    first(G: G, ctx: Context): number;
+    next(G: G, ctx: Context): number;
+}
+export interface AnyTurnOrder {
+    first(): undefined;
+    next(): undefined;
+}
+export interface SkipTurnOrder {
+    first(G: G, ctx: Context): number;
+    next(G: G, ctx: Context): number|void;
+}
+export interface ITurnOrder {
+    DEFAULT: DefaultTurnOrder,
+    ANY: AnyTurnOrder,
+    SKIP: SkipTurnOrder
+}
+export const TurnOrder: ITurnOrder;

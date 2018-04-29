@@ -31,8 +31,8 @@ export interface FlowValue {
 }
 export interface Phase {
     name: string,
-    setup: (G: G, ctx: Context) => G,
-    cleanup: (G: G, ctx: Context) => G,
+    setup?: (G: G, ctx: Context) => G,
+    cleanup?: (G: G, ctx: Context) => G,
 }
 export interface G {
     name: string,
