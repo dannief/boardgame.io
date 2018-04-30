@@ -1,14 +1,9 @@
 import { Component } from 'react';
-import { Game } from '../server';
 import { _ClientImpl } from './client';
+import { ClientInput, WrappedBoardProps } from './react-native';
 
-export interface ClientInput {
-    game: Game,
-    numPlayers: number,
-    board: any,
-    multiplayer: boolean,
+export interface DebuggableClientInput extends ClientInput {
     debug?: boolean,
-    enhancer: any,
 }
 export function Client({
     game,
@@ -17,15 +12,13 @@ export function Client({
     multiplayer,
     debug,
     enhancer,
-}: ClientInput): WrappedBoard;
-export interface WrappedBoardProps {
-    gameID?: string,
-    playerID?: string|null,
+}: DebuggableClientInput): WrappedBoard;
+export interface DebuggableWrappedBoardProps extends WrappedBoardProps {
     debug?: boolean,
 }
 export interface WrappedBoardState {
     // None presently.
 }
-declare class WrappedBoard extends Component<WrappedBoardProps, WrappedBoardState> {
+declare class WrappedBoard extends Component<DebuggableWrappedBoardProps, WrappedBoardState> {
     client: _ClientImpl;
 }
