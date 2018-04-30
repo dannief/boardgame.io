@@ -24,4 +24,4 @@ export const restore: (state: State) => RestoreAction;
 export const reset: () => Action;
 export const undo: () => Action;
 export const redo: () => Action;
-
+export type ActionSignatures = typeof makeMove | typeof gameEvent | typeof restore | typeof reset | typeof undo | typeof redo;
