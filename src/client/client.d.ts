@@ -20,7 +20,7 @@ export interface ClientInput {
     playerID: string,
     enhancer: any,
 }
-declare class _ClientImpl {
+export class _ClientImpl {
     readonly game: Game;
     playerID?: string;
     moves: Dispatchers;
@@ -36,7 +36,7 @@ declare class _ClientImpl {
         playerID,
         enhancer,
     }: ClientInput);
-    subscribe(fn: () => any): void;
+    subscribe(fn: (callback?: () => any) => any): void;
     getState(): ClientState;
     connect(): void;
     createDispatchers(): void;
