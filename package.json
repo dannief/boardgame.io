@@ -60,6 +60,7 @@
     "@storybook/react": "^3.2.16",
     "@types/lru-cache": "^4.1.0",
     "@types/mongodb": "^3.0.15",
+    "@types/socket.io-client": "^1.4.32",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.0",
