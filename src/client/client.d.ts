@@ -5,7 +5,6 @@ import { Game } from '../server';
 export interface Dispatchers {
     [name: string]: (...args: any[]) => void;
 }
-
 export interface ClientState extends State {
     isActive: boolean,
     isConnected?: boolean
@@ -28,7 +27,6 @@ declare class _ClientImpl {
     events: Dispatchers;
     gameID?: string;
     readonly store: Store<ClientState>;
-
     constructor({
         game,
         numPlayers,
@@ -38,7 +36,6 @@ declare class _ClientImpl {
         playerID,
         enhancer,
     }: ClientInput);
-
     subscribe(fn: () => any): void;
     getState(): ClientState;
     connect(): void;
