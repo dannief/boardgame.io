@@ -1,4 +1,4 @@
-import { State } from './game';
+import { GameState } from './game';
 import { ActionTypes } from './action-types';
 
 // TODO: ascertain whether <Args> generic is needed, or whether GameArgsPayload takes a consistent Args
@@ -9,7 +9,7 @@ export interface GameArgsPayload<Args> {
     playerID: string,
 }
 export interface RestoreAction extends Action {
-    state: State
+    state: GameState
 }
 export interface MoveAction<Args> extends Action {
     payload: GameArgsPayload<Args>
@@ -20,7 +20,7 @@ export interface Action {
 
 export const makeMove: <Args>(type: string, args: Array<Args>, playerID: string) => MoveAction<Args>;
 export const gameEvent: <Args>(type: string, args: Array<Args>, playerID: string) => MoveAction<Args>;
-export const restore: (state: State) => RestoreAction;
+export const restore: (state: GameState) => RestoreAction;
 export const reset: () => Action;
 export const undo: () => Action;
 export const redo: () => Action;

@@ -1,4 +1,4 @@
-import { G, State } from './game';
+import { G, GameState } from './game';
 
 export const MAKE_MOVE: 'MAKE_MOVE';
 export const GAME_EVENT: 'GAME_EVENT';
@@ -12,7 +12,7 @@ export interface ActionTypesKeyMap {
     // TODO: review types for args to be accepted by MAKE_MOVE and GAME_EVENT.
     MAKE_MOVE: (...args: any[]) => G;
     GAME_EVENT: (...args: any[]) => G;
-    RESTORE: (state: State) => G;
+    RESTORE: (state: GameState) => G;
     RESET: () => G;
     UNDO: () => G;
     REDO: () => G;

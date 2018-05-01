@@ -1,16 +1,16 @@
 import * as LRU from "lru-cache";
 import { MongoClient, Db } from 'mongodb';
-import { State } from '../core/game';
+import { GameState } from '../core/game';
 
 type Id = string;
-type GamesMap = Map<Id, State>;
+type GamesMap = Map<Id, GameState>;
 
 export class InMemory {
     public games: GamesMap;
     constructor();
     connect(): Promise<void>;
-    set(id: Id, state: State): Promise<GamesMap>;
-    get(id: Id): Promise<State|undefined>;
+    set(id: Id, state: GameState): Promise<GamesMap>;
+    get(id: Id): Promise<GameState|undefined>;
     has(id: Id): Promise<boolean>;
 }
 export interface MongoInput {
@@ -27,7 +27,7 @@ export class Mongo {
     public db: Db;
     constructor({ url, dbname, cacheSize, mockClient }: MongoInput);
     connect(): Promise<void>;
-    set(id: Id, state: State): Promise<GamesMap>;
-    get(id: Id): Promise<State|undefined>;
+    set(id: Id, state: GameState): Promise<GamesMap>;
+    get(id: Id): Promise<GameState|undefined>;
     has(id: Id): Promise<boolean>;
 }

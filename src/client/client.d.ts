@@ -1,11 +1,11 @@
 import { Store } from 'redux';
-import { State } from '../core/game';
+import { GameState } from '../core/game';
 import { Game } from '../server';
 
 export interface Dispatchers {
     [name: string]: (...args: any[]) => void;
 }
-export interface ClientState extends State {
+export interface ClientState extends GameState {
     isActive: boolean,
     isConnected?: boolean
 }

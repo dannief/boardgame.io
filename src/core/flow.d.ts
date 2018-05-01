@@ -1,4 +1,4 @@
-import { G, Phase, State } from './game';
+import { G, Phase, GameState } from './game';
 import { Context } from '../server';
 import { Dispatch } from './events';
 import { Action, GameArgsPayload, MoveAction } from './action-creators';
@@ -15,15 +15,15 @@ export interface FlowEvents {
 export interface IFlow {
     ctx?: Context,
     events?: FlowEvents,
-    init?: State,
-    processMove?: (state: State, action: Action, dispatch: Dispatch) => void,
+    init?: GameState,
+    processMove?: (state: GameState, action: Action, dispatch: Dispatch) => void,
     optimisticUpdate?: (G: G, ctx: Context, move: MoveAction<any>) => boolean,
     canMakeMove?: (G: G, ctx: Context, gameArgsPayload: GameArgsPayload<any>) => boolean,
     canUndoMove?: (G: G, ctx: Context, moveName: string) => boolean,
 }
 export interface IFlowReturn extends Pick<IFlow, "ctx"|"init"|"canUndoMove"|"processMove"|"optimisticUpdate"|"canMakeMove"> {
     eventNames: string[],
-    processGameEvent?: (state: State, action: Action) => Dispatch,
+    processGameEvent?: (state: GameState, action: Action) => Dispatch,
 }
 export function Flow({
     ctx,

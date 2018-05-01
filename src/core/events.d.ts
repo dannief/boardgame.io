@@ -1,6 +1,6 @@
 import { IFlow } from './flow';
 import { Context } from '../server';
-import { State } from './game';
+import { GameState } from './game';
 
 // TODO: review this typing
 export interface Dispatch {
@@ -21,6 +21,6 @@ export class Events {
     public dispatch: Dispatch[];
     constructor(flow: IFlow, playerID: string);
     attach(ctx: Context): Attachment;
-    update(state: State): State;
+    update(state: GameState): GameState;
     public static detach(ctx: Context): Attachment;
 }

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { State } from '../../core/game';
+import { GameState } from '../../core/game';
 import { Store } from 'redux';
 import { Events, EventsDict } from '../../core/events';
 import { restore } from '../../core/action-creators';
@@ -45,14 +45,14 @@ export class KeyboardShortcut extends React.Component<KeyboardShortcutProps, Key
     activate(event: React.MouseEvent<HTMLElement>): void;
 }
 export interface DebugProps {
-    gamestate: State,
+    gamestate: GameState,
     gameID: string,
     playerID?: string,
     moves?: any,
     events?: EventsDict,
-    restore?: (gamestate: State) => void,
+    restore?: (gamestate: GameState) => void,
     showLog?: boolean,
-    store?: Store<State>,
+    store?: Store<GameState>,
 }
 export interface DebugState {
     showDebugUI: boolean,

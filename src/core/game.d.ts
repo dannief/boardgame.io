@@ -3,7 +3,7 @@ import { Action, MoveAction } from './action-creators';
 import { ActionTypes, ActionTypesKeyMap } from './action-types';
 
 // TODO: double-check this type; unlikely to be completely correct.
-export interface State {
+export interface GameState {
     // User managed state.
     G: G,
     // Framework managed state.
@@ -22,7 +22,7 @@ export interface State {
 
     // A snapshot of this object so that actions can be
     // replayed over it to view old snapshots.
-    _initial: State, // TODO: double-check
+    _initial: GameState, // TODO: double-check
 }
 export interface FlowValue {
     endGameIf: (G: G, ctx: Context, playerID: string) => string, // Guessing return type based on endTurnIf().
