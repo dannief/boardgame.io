@@ -11,6 +11,7 @@ import {
     View,
 } from 'react-native';
 import { Client, WrappedBoard } from '../../src/client/react-native';
+import { Board } from './src/components/Board';
 // import logo from './assets/img/logo.png'; // Doesn't find it, somehow. Maybe a TypeScript issue (tsc ignores all but .ts(x) files).
 const logo = require('./assets/img/logo.png');
 
