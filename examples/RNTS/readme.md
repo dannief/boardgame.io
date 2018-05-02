@@ -30,6 +30,8 @@ Copy the following into tsconfig.json:
       }
     }
 
+    mv App.js App.tsx
+
     open ios/RNTS.xcodeproj
 
 Change the default bundle identifier from `org.reactjs.native.example.RNTS` to:
