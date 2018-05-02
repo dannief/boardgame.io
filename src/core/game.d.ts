@@ -1,6 +1,6 @@
 import { Context } from '../server';
 import { Action, MoveAction } from './action-creators';
-import { ActionTypes, ActionTypesKeyMap } from './action-types';
+import { ActionTypes, ActionTypesKeyMap, Move } from './action-types';
 
 // TODO: double-check this type; unlikely to be completely correct.
 export interface GameState {
@@ -44,15 +44,16 @@ export interface G {
     // TODO: determine whether the MoveAction is likely to have args of type other than simply 'any'.
     processMove: (G: G, action: MoveAction<any>, ctx: Context) => G;
 }
-export interface GameArgs {
-    name: string,
-    setup: any,
+export interface GameArgs<T extends G> {
+    name?: string,
+    setup?: any,
     // moves: Pick<ActionTypesKeyMap, "MAKE_MOVE">,
-    moves: Partial<ActionTypesKeyMap>,
-    playerView: any,
-    flow: any,
-    seed: number,
+    // moves?: Partial<ActionTypesKeyMap>,
+    moves?: { [moveName: string]: Move<T> },
+    playerView?: any,
+    flow?: any,
+    seed?: number,
 }
 export type GameArgsSpread = [string, any, any[], any, any, number];
 
-export default function Game({ name, setup, moves, playerView, flow, seed }: GameArgs): G;
+export default function Game<T extends G>({ name, setup, moves, playerView, flow, seed }: GameArgs<T>): T;

@@ -4,18 +4,19 @@
  * @flow
  */
 
-import React from 'react';
+import React, { DetailedHTMLProps, HTMLAttributes } from 'react';
 import {
     Image,
     StyleSheet,
     View,
 } from 'react-native';
 import { Client, WrappedBoard } from '../../src/client/react-native';
-import { Board } from './src/components/Board';
+import Board from './src/components/Board';
+import TicTacToe from './src/components/Game';
 // import logo from './assets/img/logo.png'; // Doesn't find it, somehow. Maybe a TypeScript issue (tsc ignores all but .ts(x) files).
 const logo = require('./assets/img/logo.png');
 
-const App: WrappedBoard = Client({
+const clientTag: WrappedBoard = Client({
     game: TicTacToe,
     board: Board,
 });
@@ -23,7 +24,7 @@ const App: WrappedBoard = Client({
 const Singleplayer = () => (
     <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <App gameID="single" />
+        <clientTag gameID="single" />
     </View>
 );
 export default Singleplayer;

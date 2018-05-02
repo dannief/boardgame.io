@@ -1,6 +1,10 @@
 {
     "compilerOptions": {
         "target": "es2015",
+        "lib": [
+            "DOM", "ES5", "ScriptHost" // ES5 defaults
+//            "DOM.Iterable"
+        ],
         "module": "es2015",
         "jsx": "react-native",
         "baseUrl": ".",

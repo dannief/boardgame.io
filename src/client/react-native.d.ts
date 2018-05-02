@@ -1,22 +1,22 @@
-import { Component } from 'react';
-import { Game } from '../server';
+import { Component, DetailedHTMLProps, HTMLAttributes } from 'react';
 import { _ClientImpl } from './client';
+import { G } from '../core/game';
 
-export interface ClientInput {
-    game: Game,
-    numPlayers: number,
+export interface ClientInput<T extends G> {
+    game: T,
+    numPlayers?: number,
     board: any,
-    multiplayer: boolean|{ server: string },
+    multiplayer?: boolean|{ server: string },
     debug?: boolean,
-    enhancer: any,
+    enhancer?: any,
 }
-export function Client({
+export function Client<T extends G>({
     game,
     numPlayers,
     board,
     multiplayer,
     enhancer,
-}: ClientInput): WrappedBoard;
+}: ClientInput<T>): WrappedBoard;
 export interface WrappedBoardProps {
     gameID?: string,
     playerID?: string|null,
@@ -24,6 +24,15 @@ export interface WrappedBoardProps {
 export interface WrappedBoardState {
     // None presently.
 }
-declare class WrappedBoard extends Component<WrappedBoardProps, WrappedBoardState> {
+declare class WrappedBoard extends Component<WrappedBoardProps, WrappedBoardState>{
     client: _ClientImpl;
+}
+// https://github.com/Microsoft/TypeScript/issues/15449
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            // ClientTag: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> | WrappedBoardProps
+            clientTag: WrappedBoardProps
+        }
+    }
 }

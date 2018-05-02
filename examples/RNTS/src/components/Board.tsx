@@ -7,23 +7,10 @@
  */
 
 import React from 'react';
-import { StyleSheet, Text, TouchableHighlight, View, ViewStyle } from 'react-native';
-import { G } from '../../../../src/core/game';
-import { Context } from '../../../../src/server/index';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { ComponentStyle, StyleObject } from '../utils/helpers';
+import { BoardContext, BoardG, Marker } from './Game';
 
-type playerId = keyof Marker;
-interface BoardG extends G {
-    // [key: string]: playerId[];
-    cells: playerId[]
-}
-interface BoardContext extends Context {
-    gameover: playerId
-}
-interface Marker {
-    '0': 'X',
-    '1': 'O'
-}
 interface BoardProps {
     G: BoardG,
     ctx: BoardContext,
@@ -49,8 +36,8 @@ class Board extends React.Component<BoardProps, BoardState> {
     };
 
     private isActive(id: number): boolean {
-        if (!this.props.isActive) return false;
-        if (this.props.G.cells[id] !== null) return false;
+        if(!this.props.isActive) return false;
+        if(this.props.G.cells[id] !== null) return false;
         return true;
     }
 
