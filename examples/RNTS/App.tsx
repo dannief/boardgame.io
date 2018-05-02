@@ -10,7 +10,7 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
-import { Client, WrappedBoard } from '../../src/client/react-native';
+import { Client, WrappedBoard, WrappedBoardProps } from '../../src/client/react-native';
 import Board from './src/components/Board';
 import TicTacToe from './src/components/Game';
 // import logo from './assets/img/logo.png'; // Doesn't find it, somehow. Maybe a TypeScript issue (tsc ignores all but .ts(x) files).

@@ -31,7 +31,7 @@ declare class WrappedBoard extends Component<WrappedBoardProps, WrappedBoardStat
 declare global {
     namespace JSX {
         interface IntrinsicElements {
-            // ClientTag: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> | WrappedBoardProps
+            // clientTag: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> | WrappedBoardProps
             clientTag: WrappedBoardProps
         }
     }
