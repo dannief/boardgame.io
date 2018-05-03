@@ -1,18 +1,19 @@
 import { Component } from 'react';
 import { _ClientImpl } from './client';
 import { ClientInput, WrappedBoardProps } from './react-native';
+import { G } from '../core/game';
 
-export interface DebuggableClientInput extends ClientInput {
+export interface DebuggableClientInput<T extends G> extends ClientInput<T> {
     debug?: boolean,
 }
-export function Client({
+export function Client<T extends G>({
     game,
     numPlayers,
     board,
     multiplayer,
     debug,
     enhancer,
-}: DebuggableClientInput): WrappedBoard;
+}: DebuggableClientInput<T>): WrappedBoard;
 export interface DebuggableWrappedBoardProps extends WrappedBoardProps {
     debug?: boolean,
 }
