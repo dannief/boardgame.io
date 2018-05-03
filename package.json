@@ -16,7 +16,7 @@
     "storybook": "start-storybook -p 3000 -c storybook",
     "storybook:build": "build-storybook -c storybook -o docs/storybook",
     "clean": "node ./scripts/clean.js",
-    "prepare": "cross-env BABEL_ENV=rollup rollup --config rollup.npm.js",
+    "prepare": "cross-env BABEL_ENV=rollup rollup --config rollup.npm.js && node ./scripts/prepare-typings.js",
     "prepublishOnly": "generate-export-aliases",
     "prettier": "prettier --write \"{examples,docs,src,storybook}/**/*.{js,css,md}\"",
     "postpublish": "node ./scripts/postpublish.js"
