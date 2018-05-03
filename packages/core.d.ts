@@ -32,8 +32,9 @@ import {
     IPlayerView
 } from '../src/core/player-view';
 
-// All interfaces from here on
+// core.js doesn't explicitly import implementations for any of these.
 import {
+    // This implementation only ends up in the dist/core.js because Flow depends upon it
     // Random,
     RandomState
 } from '../src/core/random';
@@ -43,30 +44,54 @@ import {
     CreateGameReducerInput
 } from '../src/core/reducer';
 
+import {
+    // makeMove, gameEvent, restore, reset, undo, redo,
+    GameArgsPayload, RestoreAction, MoveAction, Action, ActionSignatures
+} from '../src/core/action-creators';
+
+import {
+    // MAKE_MOVE, GAME_EVENT, RESTORE, RESET, UNDO, REDO,
+    ActionTypes, Move, ActionTypesKeyMap
+} from '../src/core/action-types';
+
+import {
+    // Events
+    Dispatch, Attachment, EventsDict
+} from '../src/core/events';
+
 export {
-    // game
+    /* game */
     Game,
 
-    // flow
+    /* flow */
     Flow, FlowWithPhases,
     FlowEvents, IFlow, IFlowReturn, IFlowWithPhases,
 
-    // turn-order
+    /* turn-order */
     TurnOrder, Pass,
     DefaultTurnOrder, AnyTurnOrder, SkipTurnOrder, ITurnOrder,
 
-    // player-view
+    /* player-view */
     PlayerView,
     IPlayerView,
 
-    // random
+    /* random */
     // Random,
     RandomState,
 
-    // reducer
-    CreateGameReducerInput
+    /* reducer */
+    // createGameReducer,
+    CreateGameReducerInput,
 
-    /* TODO: all the rest.
-     * This is endless, and I'm not even sure how to get rollup to play with TypeScript (or whether it might even work
-     * in the end); I'd rather just distribute source files alongside declarations, without bundling into packages. */
+    /* action-creators */
+    // makeMove, gameEvent, restore, reset, undo, redo,
+    GameArgsPayload, RestoreAction, MoveAction, Action, ActionSignatures,
+
+    /* action-types */
+    // MAKE_MOVE, GAME_EVENT, RESTORE, RESET, UNDO, REDO,
+    ActionTypes, Move, ActionTypesKeyMap,
+
+    /* events */
+    // Events
+    Dispatch, Attachment, EventsDict
 };
