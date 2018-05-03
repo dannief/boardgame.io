@@ -1,5 +1,7 @@
-import Game, { G } from '../../../../src/core/game';
-import { Context } from '../../../../src/server';
+// TODO: import redux, etc. and see whether things start to work
+// ... Or just move src & declarations to dist, and import forked repo
+import Game, { G } from '../../lib/core/game';
+import { Context } from '../../lib/server';
 
 export interface BoardG extends G {
     cells: PlayerId[]

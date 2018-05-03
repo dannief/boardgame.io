@@ -8,7 +8,18 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "0.55.3"
+    "react-native": "0.55.3",
+    "koa": "^2.3.0",
+    "koa-router": "^7.2.1",
+    "koa-socket": "^4.4.0",
+    "koa-static": "^4.0.1",
+    "lru-cache": "^4.1.1",
+    "mongodb": "^3.0.3",
+    "mousetrap": "^1.6.1",
+    "prop-types": "^15.5.10",
+    "redux": "^3.7.2",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.1.0"
   },
   "devDependencies": {
     "@types/react": "^16.3.13",
