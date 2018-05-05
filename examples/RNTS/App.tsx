@@ -6,10 +6,8 @@ import {
 } from 'react-native';
 import Board from './src/components/Board';
 import TicTacToe from './src/components/Game';
-import { Client, WrappedBoard, WrappedBoardProps } from './lib/client/react-native';
+import { Client, WrappedBoard, WrappedBoardProps } from 'boardgame.io/react-native';
 const logo = require('./assets/img/logo.png');
-
-console.log(Client);
 
 const ClientTag: WrappedBoard = Client({
     game: TicTacToe,
@@ -19,7 +17,10 @@ const ClientTag: WrappedBoard = Client({
 const Singleplayer = () => (
     <View style={styles.container}>
         <Image source={logo} style={styles.logo} />
-        <ClientTag gameID="single" />
+        {
+            // @ts-ignore Can't get the declarations to expose ClientTag :(
+            (<ClientTag gameID="single" />)
+        }
     </View>
 );
 export default Singleplayer;

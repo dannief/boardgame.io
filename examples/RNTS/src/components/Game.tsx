@@ -1,7 +1,7 @@
 // TODO: import redux, etc. and see whether things start to work
 // ... Or just move src & declarations to dist, and import forked repo
-import Game, { G } from '../../lib/core/game';
-import { Context } from '../../lib/server';
+import Game, { G } from 'boardgame.io/core';
+import { Context } from 'boardgame.io/server';
 
 export interface BoardG extends G {
     cells: PlayerId[]
@@ -28,6 +28,7 @@ function IsVictory(cells: PlayerId[]) {
         [2, 4, 6],
     ];
 
+    // @ts-ignore https://github.com/Microsoft/TypeScript/issues/12707
     for(let pos of positions){
         const symbol: PlayerId = cells[pos[0]];
         let winner: PlayerId|null = symbol;
@@ -53,6 +54,7 @@ const TicTacToe: BoardG = Game({
 
     moves: {
         clickCell(G: BoardG, ctx: BoardContext, id: number){
+            // @ts-ignore https://github.com/Microsoft/TypeScript/issues/12707
             const cells: PlayerId[] = [...G.cells];
 
             if(cells[id] === null) cells[id] = ctx.currentPlayer;
