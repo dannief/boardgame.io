@@ -1,7 +1,9 @@
 # How this project was initialised
 
     react-native init RNTS
+    cd RNTS
     yarn add --dev @types/react @types/react-native react-native-typescript-transformer typescript
+    yarn add https://github.com/shirakaba/boardgame.io.git#shirakaba/typescript-examples
     touch rn-cli.config.js
 
 Copy the following into rn-cli-config.js:

@@ -11,12 +11,12 @@
         "jsx": "react-native",
         "baseUrl": ".",
         "moduleResolution": "node",
-        "allowSyntheticDefaultImports": true,
-        "typeRoots": [                            /* Type declaration files to be included in compilation. */
-            "node_modules/@types",
-            "@types",
-            "./@types"
-        ]
+        "allowSyntheticDefaultImports": true
+//        "typeRoots": [                            /* Type declaration files to be included in compilation. */
+//            "node_modules/@types",
+//            "@types",
+//            "./@types"
+//        ]
     },
     "exclude": [
         "node_modules",

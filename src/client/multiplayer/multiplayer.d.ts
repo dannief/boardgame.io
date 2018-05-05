@@ -1,5 +1,6 @@
 import { ActionTypes } from '../../core/action-types';
 import { Store } from 'redux';
+import io from 'socket.io-client';
 // import { Action, ActionSignatures } from '../../core/action-creators';
 
 declare const blacklistedActions: Set<ActionTypes>;

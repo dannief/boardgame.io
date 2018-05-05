@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "boardgame.io": "https://github.com/shirakaba/boardgame.io.git",
+    "boardgame.io": "https://github.com/shirakaba/boardgame.io.git#shirakaba/typescript-examples",
     "react": "16.3.1",
     "react-native": "0.55.3"
   },
