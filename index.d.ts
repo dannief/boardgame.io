@@ -5,23 +5,19 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-import {
-    Component,
-    CSSProperties,
-    DOMAttributes,
-    HTMLAttributes,
-    MouseEventHandler,
-    ReactElement,
-    ReactNode,
-} from 'react';
-import * as React from 'react';
-import { GenericInteractiveProps, IGridColorMap, IGridProps, Square } from './src/ui/grid';
-import { IHexGridProps } from './src/ui/hex';
-import { ITokenProps, ITokenState } from './src/ui/token';
+// import * as React from 'react';
+// import { GenericInteractiveProps, IGridColorMap, IGridProps, Square } from './src/ui/grid';
+// import { IHexGridProps } from './src/ui/hex';
+// import { ITokenProps, ITokenState } from './src/ui/token';
 
 declare module 'boardgame.io/ui' {
-    import * as React from 'react';
-    import { Component, ReactNode } from 'react';
+    import React, {
+        CSSProperties,
+        DOMAttributes,
+        HTMLAttributes,
+        ReactElement,
+        ReactNode,
+    } from 'react';
     export interface ITokenProps extends GenericInteractiveProps<HTMLElement> {
         x: number;
         y: number;
@@ -149,72 +145,74 @@ declare module 'boardgame.io/ui' {
     }
     export const Logo: (props: ILogoProps) => ReactElement<ILogoProps>;
     // FIXME: Not sure how to deal with default exports in this (single-file declaration) context.
-    // export default Logo;
-    declare module 'boardgame.io/core' {
-        export class FlowObj {
-            ctx: (players: number) => any;
-            processGameEvent: (state: any, gameEvent: any) => any;
-        }
-        export class GameObj {
-            processMove: (G: any, action: any, ctx: any) => any;
-            flow: FlowObj;
-        }
-        interface IGameCtx {
-            numPlayer: number;
-            turn: number;
-            currentPlayer: string;
-            currentPlayerMoves: number;
-        }
-        interface IGameMoves {
-            [key:  string]: (G: any, ctx: IGameCtx, ...args: any[]) => any;
-        }
-        interface IGameFlowPhase {
-            name: string;
-            allowedMoves: string[];
-            endPhaseIf: (G: any, ctx: IGameCtx) => boolean;
-        }
-        interface IGameFlowTrigger {
-            conditon: (G: any, ctx: IGameCtx) => boolean;
-            action: (G: any, ctx: IGameCtx) => any;
-        }
-        interface IGameFlow {
-            movesPerTurn?: number;
-            endGameIf: (G: any, ctx: IGameCtx) => any;
-            endTurnIf?: (G: any, ctx: IGameCtx) => boolean;
-            onTurnEnd?: (G: any, ctx: IGameCtx) => void;
-            triggers?: IGameFlowTrigger[];
-            phases?: IGameFlowPhase[];
-        }
-        interface IGameArgs {
-            name?: string;
-            setup: (numPlayers: number) => any;
-            moves: IGameMoves;
-            playerView?: (G: any, ctx: IGameCtx, playerID: string) => any;
-            flow: IGameFlow;
-        }
-        export function Game (gameArgs: IGameArgs): GameObj;
+    // export { GameObj } from "boardgame.io/ui";
+}
+declare module 'boardgame.io/core' {
+    export class FlowObj {
+        ctx: (players: number) => any;
+        processGameEvent: (state: any, gameEvent: any) => any;
     }
-
-    declare module 'boardgame.io/react' {
-        import { GameObj } from 'boardgame.io/core';
-        export class WrapperBoard {
-        }
-        interface IClientArgs {
-            game: GameObj;
-            numPlayer?: number;
-            board: React.ReactNode;
-            multiplayer?: boolean;
-            debug?: boolean;
-        }
-        export function Client (clientArgs: IClientArgs): WrapperBoard;
+    export class GameObj {
+        processMove: (G: any, action: any, ctx: any) => any;
+        flow: FlowObj;
     }
-
-    declare module 'boardgame.io/server' {
-        import { GameObj } from 'boardgame.io/core';
-        import * as Koa from 'koa';
-        interface IServerArgs {
-            games: GameObj[]
-        }
-        function Server(serverArgs: IServerArgs): Koa;
-        export = Server;
+    interface IGameCtx {
+        numPlayer: number;
+        turn: number;
+        currentPlayer: string;
+        currentPlayerMoves: number;
     }
+    interface IGameMoves {
+        [key:  string]: (G: any, ctx: IGameCtx, ...args: any[]) => any;
+    }
+    interface IGameFlowPhase {
+        name: string;
+        allowedMoves: string[];
+        endPhaseIf: (G: any, ctx: IGameCtx) => boolean;
+    }
+    interface IGameFlowTrigger {
+        conditon: (G: any, ctx: IGameCtx) => boolean;
+        action: (G: any, ctx: IGameCtx) => any;
+    }
+    interface IGameFlow {
+        movesPerTurn?: number;
+        endGameIf: (G: any, ctx: IGameCtx) => any;
+        endTurnIf?: (G: any, ctx: IGameCtx) => boolean;
+        onTurnEnd?: (G: any, ctx: IGameCtx) => void;
+        triggers?: IGameFlowTrigger[];
+        phases?: IGameFlowPhase[];
+    }
+    interface IGameArgs {
+        name?: string;
+        setup: (numPlayers: number) => any;
+        moves: IGameMoves;
+        playerView?: (G: any, ctx: IGameCtx, playerID: string) => any;
+        flow: IGameFlow;
+    }
+    export function Game (gameArgs: IGameArgs): GameObj;
+}
+declare module 'boardgame.io/react' {
+    import React, {
+        // ReactNode,
+    } from 'react';
+    import { GameObj } from 'boardgame.io/core';
+    export class WrapperBoard {
+    }
+    interface IClientArgs {
+        game: GameObj;
+        numPlayer?: number;
+        board: React.ReactNode;
+        multiplayer?: boolean;
+        debug?: boolean;
+    }
+    export function Client (clientArgs: IClientArgs): WrapperBoard;
+}
+declare module 'boardgame.io/server' {
+    import { GameObj } from 'boardgame.io/core';
+    import * as Koa from 'koa';
+    interface IServerArgs {
+        games: GameObj[]
+    }
+    function Server(serverArgs: IServerArgs): Koa;
+    export = Server;
+}
