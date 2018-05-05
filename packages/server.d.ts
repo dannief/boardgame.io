@@ -8,9 +8,11 @@ import {
 } from '../src/server/db';
 
 export {
+    /* server */
     Server,
     Context, Game, ServerArgs, ServerReturn,
 
+    /* db */
     Mongo,
     InMemory, MongoInput
 };
